@@ -18,6 +18,7 @@ def readQuestions():
     filesWext = [splitext(f)[0] for f in files]
     return filesWext, files
 
+# create array of files, dics of tests for questions
 def loadTestFiles(testFiles):
     tests = []
     for test in testFiles:
@@ -57,12 +58,16 @@ def readExercises(studentDir):
     files.sort()
     return files
 
-def checkExercises():
+def checkExercises(exercises):
+    print(exercises)
+
+def configStudents():
     studentsName = readStudents()
     counter = 0
     for studentName in studentsName:
         print('\nReading #' + str(counter + 1), studentName, '..')
         exercises = readExercises(join(studentsFilePath,studentName))
+        checkExercises(exercises)
         print('Checking', studentName, 'exercises ..')
         print('Calculating', studentName, 'grade ..')
 
@@ -86,7 +91,7 @@ def main():
     # Configuration(reading and loading) of all tests
     questions,testFiles,tests = configTests()
     # Reading and loading of all students
-    checkExercises()
+    configStudents()
 
 
 if __name__== "__main__":
