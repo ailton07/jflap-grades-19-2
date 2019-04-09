@@ -55,12 +55,20 @@ def readStudents():
 def readExercises(studentDir):
     files = [f for f in listdir(studentDir) if isfile(join(studentDir, f))]
     files.sort()
-    print(files)
+    return files
 
-def configStudents():
+def checkExercises():
     studentsName = readStudents()
+    counter = 0
     for studentName in studentsName:
-        readExercises(join(studentsFilePath,studentName))
+        print('\nReading #' + str(counter + 1), studentName, '..')
+        exercises = readExercises(join(studentsFilePath,studentName))
+        print('Checking', studentName, 'exercises ..')
+        print('Calculating', studentName, 'grade ..')
+
+        # input in csv file
+        counter += 1
+    print('\n\n### Total number of students:', counter)
 ######################
 ######################
 ###### Main ##########
@@ -78,7 +86,7 @@ def main():
     # Configuration(reading and loading) of all tests
     questions,testFiles,tests = configTests()
     # Reading and loading of all students
-    configStudents()
+    checkExercises()
 
 
 if __name__== "__main__":
