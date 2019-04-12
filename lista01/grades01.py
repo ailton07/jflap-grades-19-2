@@ -22,7 +22,18 @@ def readQuestions():
 def loadTestFiles(testFiles):
     tests = []
     for test in testFiles:
-        questionTest = []
+        questionName = test.split('.')[0]
+
+        fp = open(join(testsFilePath,test))
+        questionType = fp.readline()
+        fp.close()
+
+        questionTest = {
+            'name': questionName,
+            'type': questionType.rstrip('\n'),
+            'cases': []
+        }
+
         with open(join(testsFilePath,test)) as fp:
             for line in fp:
                 line = line.rstrip('\n').split(' ') # rstrip -> it removes new line '\n' from string
@@ -30,7 +41,7 @@ def loadTestFiles(testFiles):
                     print('[ERROR] Test should have input and expect result, eg.: 001 1')
                     print('[EFILE]', join(testsFilePath,test))
                     exit(1)
-                questionTest.append(line)
+                questionTest['cases'].append(line)
             fp.close()
         tests.append(questionTest)
     return tests
@@ -90,8 +101,11 @@ def main():
 
     # Configuration(reading and loading) of all tests
     questions,testFiles,tests = configTests()
+    # print(questions)
+    # print(testFiles)
+    print(tests)
     # Reading and loading of all students
-    configStudents()
+    # configStudents()
 
 
 if __name__== "__main__":
