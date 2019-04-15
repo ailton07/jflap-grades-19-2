@@ -24,17 +24,20 @@ def loadTestFiles(testFiles):
     for test in testFiles:
         questionName = test.split('.')[0]
 
-        fp = open(join(testsFilePath,test))
-        questionType = fp.readline()
-        fp.close()
-
-        questionTest = {
-            'name': questionName,
-            'type': questionType.rstrip('\n'),
-            'cases': []
-        }
-
         with open(join(testsFilePath,test)) as fp:
+            questionType = fp.readline()
+            questionType = questionType.rstrip('\n').split(' ')
+            if(len(questionType) != 1):
+                print('[ERROR] The type should be 0 (run), 1 (equivalent) or 2 (regular) , eg.: 001 1')
+                print('[EFILE]', join(testsFilePath,test))
+                exit(1)
+
+            questionTest = {
+                'name': questionName,
+                'type': questionType,
+                'cases': []
+            }
+
             for line in fp:
                 line = line.rstrip('\n').split(' ') # rstrip -> it removes new line '\n' from string
                 if(len(line) != 2):
@@ -85,6 +88,7 @@ def configStudents():
         # input in csv file
         counter += 1
     print('\n\n### Total number of students:', counter)
+    
 ######################
 ######################
 ###### Main ##########
@@ -101,8 +105,6 @@ def main():
 
     # Configuration(reading and loading) of all tests
     questions,testFiles,tests = configTests()
-    # print(questions)
-    # print(testFiles)
     print(tests)
     # Reading and loading of all students
     # configStudents()
