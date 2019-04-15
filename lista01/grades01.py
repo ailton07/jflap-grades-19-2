@@ -6,6 +6,7 @@ jflapJarPath = '../jflaplib-cli-1.3-bundle.jar'
 testsFilePath = 'tests'
 studentsFilePath = 'students'
 csvFileName = 'grades.csv'
+
 ######################
 ######################
 ###### Aux ###########
@@ -16,6 +17,9 @@ def doJFlapLibCLI(method, file, input):
     result = subprocess.run(['java', '-jar', jflapJarPath, method, file, input], stdout=subprocess.PIPE)
     return result.stdout.decode('ascii')
 
+def toCSVfile(studentsGrades, testCase):
+    print('\n### Printing in csv file.. ' + csvFileName)
+    print(studentsGrades)
 
 ######################
 ######################
@@ -103,7 +107,7 @@ def checkRunQuestion(test, fileName, studentName):
     return resultCases
 
 def calculateExercises(exerciseFiles, studentName, testCase):
-    grade = []
+    grade = {}
     counter = 0.0
     for fileName in exerciseFiles:
         question = fileName[-8:-4]
@@ -120,39 +124,37 @@ def calculateExercises(exerciseFiles, studentName, testCase):
             point = float(len(runResults['passed']) * questionValue) / runResults['total']
             counter += point
             print('### Score: ' + str(point) + ', Hits: (' + str(len(runResults['passed'])) + '/' + str(runResults['total']) + ')')
-            grade.append([question, point])
+            grade[question] = point
         # TODO:: for other types of jflap lib cli
     return {'grade': grade, 'points': counter, 'questions': len(exerciseFiles)}
 
 def configStudents(testCase):
-    studentsGrades = {}
+    studentsGrades = []
     studentsName = readStudents()
     counter = 0
     for studentName in studentsName:
-        print('\nReading #' + str(counter + 1) + ' ' + studentName + ' ..')
+        print('\n>> Reading #' + str(counter + 1) + ' ' + studentName + ' ..')
         exerciseFiles = readExercises(join(studentsFilePath,studentName))
         print(studentName + ' exercises..')
         grade = calculateExercises(exerciseFiles, studentName,testCase)
-        studentsGrades[studentName] = grade
+        studentsGrades.append([studentName, grade])
         counter += 1
-    print('\n\n### Total of students: ' + str(counter) + ' ###')
+        print('### Total of questions computed: ' + str(len(exerciseFiles)) + ' ###')
+    print('### Total of students: ' + str(counter) + ' ###')
     return studentsGrades
+
 ######################
 ######################
 ###### Main ##########
 ######################
 ######################
 
-def toCSVfile(studentsGrades):
-    # csvFileName
-    print(studentsGrades)
-
 def main():
     # Configuration(reading and loading) of all tests
     testCase = configTests()
     # Reading and loading of all students
     studentsGrades = configStudents(testCase)
-    toCSVfile(studentsGrades)
+    toCSVfile(studentsGrades, testCase)
 
 if __name__== "__main__":
     main()
