@@ -1,6 +1,6 @@
 import subprocess
-from os import listdir
-from os.path import isfile, join, splitext
+from os import listdir, remove
+from os.path import isfile, join, splitext, exists
 
 jflapJarPath = '../jflaplib-cli-1.3-bundle.jar'
 testsFilePath = 'tests'
@@ -22,10 +22,10 @@ def writeLine(fp, line):
     fp.write(line)
 
 def toCSVfile(studentsGrades, testCaseNames):
-    print('\n### Printing in csv file.. ' + csvFileName)
-    print(studentsGrades)
+    print('\n### Grades in csv file -> ' + csvFileName)
 
-    # TODO:: if exists, delete csvFileName
+    if(exists(csvFileName)):
+        remove(csvFileName)
 
     with open(csvFileName,'a') as f:
         line = 'student'
