@@ -17,9 +17,40 @@ def doJFlapLibCLI(method, file, input):
     result = subprocess.run(['java', '-jar', jflapJarPath, method, file, input], stdout=subprocess.PIPE)
     return result.stdout.decode('ascii')
 
-def toCSVfile(studentsGrades, testCase):
+def writeLine(fp, line):
+    line += '\n'
+    fp.write(line)
+
+def toCSVfile(studentsGrades, testCaseNames):
     print('\n### Printing in csv file.. ' + csvFileName)
     print(studentsGrades)
+
+    # TODO:: if exists, delete csvFileName
+
+    with open(csvFileName,'a') as f:
+        line = 'student'
+
+        # write header
+        for testName in testCaseNames:
+            line += ',' + testName
+        line += ',questions,points'
+        writeLine(f,line)
+
+        # write students
+        for student in studentsGrades:
+            line = ''
+            line = student[0] + ','
+            grades = student[1]['grade']
+
+            for testName in testCaseNames:
+                if testName in grades:
+                    line += str(grades[testName]) + ','
+                else:
+                    line += '0,'
+            line += str(student[1]['questions']) + ','
+            line += str(student[1]['points'])
+            writeLine(f,line)
+        f.close()
 
 ######################
 ######################
@@ -154,7 +185,7 @@ def main():
     testCase = configTests()
     # Reading and loading of all students
     studentsGrades = configStudents(testCase)
-    toCSVfile(studentsGrades, testCase)
+    toCSVfile(studentsGrades, testCase[0])
 
 if __name__== "__main__":
     main()
