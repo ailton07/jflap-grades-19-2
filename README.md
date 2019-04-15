@@ -1,6 +1,9 @@
 # jflap-grades
 Grades for FTC. The usage of JFLPLib CLI to compare results and output grades
 
+execution:
+> python3 grades0X.py
+
 ## Tests
 
 1. Name and number of test files must be the same for referenced in students questions sufix.
