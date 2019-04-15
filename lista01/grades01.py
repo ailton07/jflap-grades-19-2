@@ -5,6 +5,17 @@ from os.path import isfile, join, splitext
 jflapJarPath = '../jflaplib-cli-1.3-bundle.jar'
 testsFilePath = 'tests'
 studentsFilePath = 'students'
+csvFileName = 'grades.csv'
+######################
+######################
+###### Aux ###########
+######################
+######################
+
+def doJFlapLibCLI(method, file, input):
+    result = subprocess.run(['java', '-jar', jflapJarPath, method, file, input], stdout=subprocess.PIPE)
+    return result.stdout.decode('ascii')
+
 
 ######################
 ######################
@@ -20,21 +31,26 @@ def readQuestions():
 
 # create array of files, dics of tests for questions
 def loadTestFiles(testFiles):
-    tests = []
+    tests = {}
     for test in testFiles:
         questionName = test.split('.')[0]
 
         with open(join(testsFilePath,test)) as fp:
             questionType = fp.readline()
             questionType = questionType.rstrip('\n').split(' ')
-            if(len(questionType) != 1):
+
+            questionValue = fp.readline()
+            questionValue = questionValue.rstrip('\n').split(' ')
+
+            if(len(questionType) != 1 or len(questionValue) != 1):
                 print('[ERROR] The type should be 0 (run), 1 (equivalent) or 2 (regular) , eg.: 001 1')
+                print('[ERROR] The value should be real number, eg.: 0.25')
                 print('[EFILE]', join(testsFilePath,test))
                 exit(1)
 
             questionTest = {
-                'name': questionName,
-                'type': questionType,
+                'type': questionType[0],
+                'value': questionValue[0],
                 'cases': []
             }
 
@@ -46,7 +62,7 @@ def loadTestFiles(testFiles):
                     exit(1)
                 questionTest['cases'].append(line)
             fp.close()
-        tests.append(questionTest)
+            tests[questionName] = questionTest
     return tests
 
 def configTests():
@@ -54,7 +70,7 @@ def configTests():
     questions, testFiles = readQuestions()
     # Load test files
     tests = loadTestFiles(testFiles)
-    return questions,testFiles,tests
+    return [questions,testFiles,tests]
 
 ######################
 ######################
@@ -72,53 +88,71 @@ def readExercises(studentDir):
     files.sort()
     return files
 
-def checkExercises(exercises):
-    for exercise in exercises:
-        question = exercise[-8:-4]
+def checkRunQuestion(test, fileName, studentName):
+    resultCases = {'passed': [], 'nopassed': [], 'total': len(test['cases'])}
+    for case in test['cases']:
+        result = doJFlapLibCLI('run', join(studentsFilePath,studentName,fileName), case[0]).rstrip('\n')
+        resultBin = (1 if result == 'true' else 0)
+
+        # print(resultBin, case)
+        if(resultBin == int(case[1])):
+            resultCases['passed'].append(case[0])
+        else:
+            resultCases['nopassed'].append(case[0])
+
+    return resultCases
+
+def calculateExercises(exerciseFiles, studentName, testCase):
+    grade = []
+    counter = 0.0
+    for fileName in exerciseFiles:
+        question = fileName[-8:-4]
 
         if(question.find('_') != -1):
             question = question[1:]
-        print(question)
+        print('-> [Checking question ' + question + ']')
+        test = testCase[2][question]
+        print(test)
+        if(test['type'] == '0'):
+            runResults = checkRunQuestion(test, fileName, studentName)
+            print(runResults)
+            questionValue = float(test['value'])
+            point = float(len(runResults['passed']) * questionValue) / runResults['total']
+            counter += point
+            print('### Score: ' + str(point) + ', Hits: (' + str(len(runResults['passed'])) + '/' + str(runResults['total']) + ')')
+            grade.append([question, point])
+        # TODO:: for other types of jflap lib cli
+    return {'grade': grade, 'points': counter, 'questions': len(exerciseFiles)}
 
-def configStudents():
+def configStudents(testCase):
+    studentsGrades = {}
     studentsName = readStudents()
     counter = 0
     for studentName in studentsName:
         print('\nReading #' + str(counter + 1) + ' ' + studentName + ' ..')
-        exercises = readExercises(join(studentsFilePath,studentName))
-        print('Checking ' + studentName + ' exercises..')
-        checkExercises(exercises)
-        print('Calculating ' + studentName + ' grade..')
-
-        # input in csv file
+        exerciseFiles = readExercises(join(studentsFilePath,studentName))
+        print(studentName + ' exercises..')
+        grade = calculateExercises(exerciseFiles, studentName,testCase)
+        studentsGrades[studentName] = grade
         counter += 1
     print('\n\n### Total of students: ' + str(counter) + ' ###')
-
+    return studentsGrades
 ######################
 ######################
 ###### Main ##########
 ######################
 ######################
 
-
-def runJFlapLibCLI(method, file, input):
-    result = subprocess.run(['java', '-jar', jflapJarPath, method, file, input], stdout=subprocess.PIPE)
-    return result.stdout.decode('ascii')
+def toCSVfile(studentsGrades):
+    # csvFileName
+    print(studentsGrades)
 
 def main():
-
-
     # Configuration(reading and loading) of all tests
-    questions,testFiles,tests = configTests()
+    testCase = configTests()
     # Reading and loading of all students
-    configStudents()
-
+    studentsGrades = configStudents(testCase)
+    toCSVfile(studentsGrades)
 
 if __name__== "__main__":
     main()
-
-# sample of how to run
-# file = 'alunos/anderson-pimentel/Anderson_L01_q01a.jff'
-# input = '010101'
-# method = 'run'
-# print(runJFlapLibCLI(method,file,input))
