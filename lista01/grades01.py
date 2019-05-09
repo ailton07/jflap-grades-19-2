@@ -131,8 +131,10 @@ def checkRunQuestion(test, fileName, studentName):
     resultCases = {'passed': [], 'nopassed': [], 'total': len(test['cases'])}
     for case in test['cases']:
         result = doJFlapLibCLI('run', join(studentsFilePath,studentName,fileName), case[0]).rstrip('\n')
-        resultBin = (1 if result == 'true' else 0)
-
+        resultBin = -1
+        if result != '':
+            resultBin = (1 if result == 'true' else 0)
+        print('Case ['+ str(case[0]) +']: expected ' + str(case[1]) + ' got ' + str(resultBin))
         # print(resultBin, case)
         if(resultBin == int(case[1])):
             resultCases['passed'].append(case[0])
@@ -149,7 +151,7 @@ def calculateExercises(exerciseFiles, studentName, testCase):
 
         if(question.find('_') != -1):
             question = question[1:]
-        print('-> [Checking question ' + question + ']')
+        print('--> [' + question + ']')
         test = testCase[2][question]
         print(test)
         if(test['type'] == '0'):
@@ -159,7 +161,7 @@ def calculateExercises(exerciseFiles, studentName, testCase):
             point = float(len(runResults['passed']) * questionValue) / runResults['total']
             point = truncate(point,2)
             counter += point
-            print('### Score: ' + str(point) + ', Hits: (' + str(len(runResults['passed'])) + '/' + str(runResults['total']) + ')')
+            print('### Score: ' + str(point) + ', Hits: (' + str(len(runResults['passed'])) + '/' + str(runResults['total']) + ')\n')
             grade[question] = point
         # TODO:: for other types of jflap lib cli
     counter = truncate(counter,2)
@@ -170,13 +172,13 @@ def configStudents(testCase):
     studentsName = readStudents()
     counter = 0
     for studentName in studentsName:
-        print('\n>> Reading #' + str(counter + 1) + ' ' + studentName + ' ..')
+        print('\n>> #' + str(counter + 1) + ' ' + studentName + ' ..')
         exerciseFiles = readExercises(join(studentsFilePath,studentName))
-        print(studentName + ' exercises..')
+        # print(studentName + ' exercises..')
         grade = calculateExercises(exerciseFiles, studentName,testCase)
         studentsGrades.append([studentName, grade])
         counter += 1
-        print('### Total of questions computed: ' + str(len(exerciseFiles)) + ' ###')
+        print('### Total of questions computed: ' + str(len(exerciseFiles)) + ' ###\n')
     print('### Total of students: ' + str(counter) + ' ###')
     return studentsGrades
 
