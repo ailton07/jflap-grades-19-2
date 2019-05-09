@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="q0">
+			<x>259.0</x>
+			<y>84.0</y>
+			<final/>
+		</state>
+		<state id="1" name="q1">
+			<x>520.0</x>
+			<y>76.0</y>
+		</state>
+		<state id="2" name="err">
+			<x>390.0</x>
+			<y>224.0</y>
+		</state>
+		<state id="3" name="r0">
+			<x>849.0</x>
+			<y>139.0</y>
+		</state>
+		<state id="4" name="r1">
+			<x>1014.0</x>
+			<y>136.0</y>
+			<final/>
+		</state>
+		<state id="5" name="err">
+			<x>935.0</x>
+			<y>247.0</y>
+		</state>
+		<state id="6" name="s0">
+			<x>860.0</x>
+			<y>376.0</y>
+			<initial/>
+		</state>
+		<state id="7" name="s1">
+			<x>1034.0</x>
+			<y>378.0</y>
+			<final/>
+		</state>
+		<state id="8" name="err">
+			<x>953.0</x>
+			<y>483.0</y>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>7</from>
+			<to>8</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>0</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>8</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>5</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>5</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>2</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>4</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>2</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>4</from>
+			<to>4</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>5</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>2</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>5</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>7</from>
+			<to>7</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>7</to>
+			<read>1</read>
+		</transition>
+		<note>
+			<text>Reconhece 0n0n</text>
+			<x>183.0</x>
+			<y>52.0</y>
+		</note>
+		<note>
+			<text>Reconhece cadeia de n 0</text>
+			<x>626.0</x>
+			<y>91.0</y>
+		</note>
+		<note>
+			<text>Reconhece cadeia de n 1</text>
+			<x>612.0</x>
+			<y>294.0</y>
+		</note>
+	</automaton>
+</structure>

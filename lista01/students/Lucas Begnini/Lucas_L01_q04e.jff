@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="q0">
+			<x>96.0</x>
+			<y>248.0</y>
+			<initial/>
+		</state>
+		<state id="1" name="q1">
+			<x>199.0</x>
+			<y>246.0</y>
+		</state>
+		<state id="2" name="q2">
+			<x>307.0</x>
+			<y>245.0</y>
+		</state>
+		<state id="3" name="q3">
+			<x>426.0</x>
+			<y>246.0</y>
+		</state>
+		<state id="4" name="q4">
+			<x>785.0</x>
+			<y>267.0</y>
+			<final/>
+		</state>
+		<state id="5" name="q5">
+			<x>688.0</x>
+			<y>112.0</y>
+		</state>
+		<state id="6" name="q6">
+			<x>543.0</x>
+			<y>108.0</y>
+		</state>
+		<state id="7" name="q7">
+			<x>616.0</x>
+			<y>293.0</y>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>7</from>
+			<to>7</to>
+			<read>a</read>
+		</transition>
+		<transition>
+			<from>7</from>
+			<to>7</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>a</read>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>7</to>
+			<read/>
+		</transition>
+		<transition>
+			<from>3</from>
+			<to>6</to>
+			<read/>
+		</transition>
+		<transition>
+			<from>7</from>
+			<to>6</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>a</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>4</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>2</from>
+			<to>3</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>2</to>
+			<read>b</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>4</to>
+			<read>a</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>5</to>
+			<read>a</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>5</to>
+			<read>b</read>
+		</transition>
+	</automaton>
+</structure>

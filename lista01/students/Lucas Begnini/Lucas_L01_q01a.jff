@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>fa</type>
+	<automaton>
+		<!--The list of states.-->
+		<state id="0" name="Par-0">
+			<x>87.0</x>
+			<y>126.0</y>
+			<initial/>
+		</state>
+		<state id="1" name="Impar-1">
+			<x>179.0</x>
+			<y>73.0</y>
+			<final/>
+		</state>
+		<state id="5" name="Impar-0">
+			<x>183.0</x>
+			<y>208.0</y>
+		</state>
+		<state id="6" name="Par-1">
+			<x>283.0</x>
+			<y>135.0</y>
+		</state>
+		<!--The list of transitions.-->
+		<transition>
+			<from>1</from>
+			<to>6</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>1</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>1</from>
+			<to>0</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>1</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>6</to>
+			<read>1</read>
+		</transition>
+		<transition>
+			<from>6</from>
+			<to>5</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>5</from>
+			<to>0</to>
+			<read>0</read>
+		</transition>
+		<transition>
+			<from>0</from>
+			<to>5</to>
+			<read>0</read>
+		</transition>
+	</automaton>
+</structure>
