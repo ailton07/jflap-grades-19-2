@@ -13,6 +13,10 @@ csvFileName = 'grades.csv'
 ######################
 ######################
 
+def truncate(n, decimals=0):
+    multiplier = 10 ** decimals
+    return int(n * multiplier) / multiplier
+
 def doJFlapLibCLI(method, file, input):
     result = subprocess.run(['java', '-jar', jflapJarPath, method, file, input], stdout=subprocess.PIPE)
     return result.stdout.decode('ascii')
@@ -153,10 +157,12 @@ def calculateExercises(exerciseFiles, studentName, testCase):
             print(runResults)
             questionValue = float(test['value'])
             point = float(len(runResults['passed']) * questionValue) / runResults['total']
+            point = truncate(point,2)
             counter += point
             print('### Score: ' + str(point) + ', Hits: (' + str(len(runResults['passed'])) + '/' + str(runResults['total']) + ')')
             grade[question] = point
         # TODO:: for other types of jflap lib cli
+    counter = truncate(counter,2)
     return {'grade': grade, 'points': counter, 'questions': len(exerciseFiles)}
 
 def configStudents(testCase):
