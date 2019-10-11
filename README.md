@@ -47,19 +47,19 @@ input2	expected_result2
 inputN	expected_resultN
 ```
 - Where:
-`question_type` -> type of question
+1. `question_type` -> type of question
  1. 0 for 'run'
  2. 1 for 'equivalent'
  3. 2 for 'regular'
 
-`question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
+2. `question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
 
-> e.g.
-0
-0.25
-001	0
-110	1
+ e.g.
+> 0
+> 0.25
+> 001	0
+> 110	1
 
-[expected_result]:
+3. `expected_result`:
 1 -> accept
 0 -> reject
