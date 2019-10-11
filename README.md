@@ -10,22 +10,26 @@ execution:
 e.g:
 
   1. tests
-    * q01a.tst
-    * q01b.tst
-    * .
-    * .
-    * .
-    * q03a.tst
+```
+ * q01a.tst
+ * q01b.tst
+ * .
+ * .
+ * .
+ * q03a.tst
+```
 
   2. students
-    * student1
-    * studentA_L01_q01a.jff
-    * studentA_L01_q01b.jff
-    * .
-    * .
-    * .
-    * studentA_L01_q02.jff
-    * studentA_L01_q03a.jff
+```
+ * student1
+ * studentA_L01_q01a.jff
+ * studentA_L01_q01b.jff
+ * .
+ * .
+ * .
+ * studentA_L01_q02.jff
+ * studentA_L01_q03a.jff
+```
 
 2. Test files must have the input tests and the expected result, as bellow:
 - tests
@@ -39,12 +43,12 @@ input2	expected_result2
 .
 inputN	expected_resultN
 
-[question_type] -> type of question
+`question_type` -> type of question
 1. 0 for 'run'
 2. 1 for 'equivalent'
 3. 2 for 'regular'
 
-[question_value] -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
+`question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
 
 > e.g.
 0
