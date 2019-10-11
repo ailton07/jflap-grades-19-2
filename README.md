@@ -6,17 +6,17 @@ execution:
 
 ## Tests
 
-1. Name and number of test files must be the same for referenced in students questions sufix.
+1. Name and number of test files must be the same for referenced in students questions sufix (**q01a**.tst and into the studant folder -> studantA_L01_**q01a**.jff
 e.g:
 
   1. tests
 ```
- * **q01a.tst**
- * **q01b.tst**
+ * q01a.tst
+ * q01b.tst
  * .
  * .
  * .
- * **q03a.tst**
+ * q03a.tst
 ```
 
   2. students
