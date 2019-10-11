@@ -1,4 +1,4 @@
-# jflap-grades
+https://guides.github.com/features/mastering-markdown/# jflap-grades
 Grades for FTC. The usage of JFLPLib CLI to compare results and output grades
 
 execution:
@@ -46,20 +46,26 @@ input2	expected_result2
 .
 inputN	expected_resultN
 ```
-- Where:
-1. `question_type` -> type of question
- 1. 0 for 'run'
- 2. 1 for 'equivalent'
- 3. 2 for 'regular'
+Where:
+- `question_type` -> type of question
+ - 0 for 'run'
+ - 1 for 'equivalent'
+ - 2 for 'regular'
 
-2. `question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
+- `question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
 
- e.g.
-> 0
-> 0.25
-> 001	0
-> 110	1
-
-3. `expected_result`:
+- `expected_result`:
+```
 1 -> accept
 0 -> reject
+```
+
+** e.g. **
+```
+0
+0.25
+001	0
+110	1
+```
+The example define 0 in the first line to indicate type _run_ (automata), the second line means the question having 0.25 points, and third until the end of file meaning the pair input and expected result. 
+
