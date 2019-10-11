@@ -6,9 +6,10 @@ execution:
 
 ## Tests
 
-1. Name and number of test files must match with referenced in students questions sufix (**q01a**.tst and into the student folder studentA_L01_**q01a**.jff
-e.g:
+1. Name and number of test files must match with referenced in students questions sufix (**q01a**.tst and into the student folder studentA_L01_**q01a**.jff)
 
+
+  e.g:
   1. tests
 ```
  * q01a.tst
