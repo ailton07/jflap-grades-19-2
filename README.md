@@ -33,7 +33,10 @@ e.g:
 
 2. Test files must have the input tests and the expected result, as bellow:
 - tests
--- q01a.tst
+ -- q01a.tst
+
+Inside q01a.tst must be in this format of data per line:
+```
 question_type
 question_value
 input1	expected_result1
@@ -42,11 +45,12 @@ input2	expected_result2
 .
 .
 inputN	expected_resultN
-
+```
+- Where:
 `question_type` -> type of question
-1. 0 for 'run'
-2. 1 for 'equivalent'
-3. 2 for 'regular'
+ 1. 0 for 'run'
+ 2. 1 for 'equivalent'
+ 3. 2 for 'regular'
 
 `question_value` -> value of question. e.g. 0.2. Notice that the final score will be value divided by number of correct test cases.
 
