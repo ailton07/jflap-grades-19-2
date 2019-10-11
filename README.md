@@ -11,12 +11,12 @@ e.g:
 
   1. tests
 ```
- * q01a.tst
- * q01b.tst
+ * **q01a.tst**
+ * **q01b.tst**
  * .
  * .
  * .
- * q03a.tst
+ * **q03a.tst**
 ```
 
   2. students
