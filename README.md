@@ -35,7 +35,7 @@ e.g:
 - tests
  -- q01a.tst
 
-Inside q01a.tst must be in this format of data per line:
+Inside `q01a.tst` must be in this format of data per line:
 ```
 question_type
 question_value
@@ -63,7 +63,7 @@ Notice that the final score will be value divided by number of correct test case
     - 1 -> accept
     - 0 -> reject
 
-** e.g. **
+**e.g.**
 ```
 0
 0.25
