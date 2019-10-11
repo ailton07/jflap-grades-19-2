@@ -2,7 +2,7 @@
 Grades for FTC. The usage of JFLPLib CLI to compare results and output grades
 
 execution:
-> python3 grades0X.py
+> python3 gradesX.py
 
 ## Tests
 
