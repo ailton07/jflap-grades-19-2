@@ -23,11 +23,11 @@ The directory tree structure looks like this:
     ├───students
        ├───studentA
 	       ├───studentA_L01_q01a.jff
-  	       ├───studentA_L01_q01b.jff
+  	       └─────studentA_L01_q01b.jff
     ├───tests
 	    ├───q01a.tst
-	    ├───q01b.tst
-    ├───grades.py
+	    └─────q01b.tst
+    └─────grades.py
 ```
 The .jff files are the JFLAP questions to be verified. The .tst files are the Test Files described below.
 
