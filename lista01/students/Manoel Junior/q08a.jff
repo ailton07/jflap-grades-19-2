@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
-	<type>re</type>
-	<!--The regular expression.-->
-	<expression>(a+bd+dc(d+ac)*ab)(a+bd+dc(d+ac)*ab)</expression>
-</structure>

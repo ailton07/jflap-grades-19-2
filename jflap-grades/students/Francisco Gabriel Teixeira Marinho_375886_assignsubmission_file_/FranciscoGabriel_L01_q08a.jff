@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>&#13;
+	<type>fa</type>&#13;
+	<automaton>&#13;
+		<note>&#13;
+			<text>a+d(b+cd*a(cd*a)*)(a+d(b+cd*a(cd*a)*b))*</text>&#13;
+			<x>95.0</x>&#13;
+			<y>54.0</y>&#13;
+		</note>&#13;
+	</automaton>&#13;
+</structure>

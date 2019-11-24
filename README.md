@@ -1,13 +1,37 @@
-https://guides.github.com/features/mastering-markdown/# jflap-grades
-Grades for FTC. The usage of JFLPLib CLI to compare results and output grades
+
+# JFLAP Grades 2019-2
+
+A Python script to compare JFLAP files with prefined results and generate a CSV summary.  Used in FTC discipline (UFAM) in the second half of 2019.
+
+Original project: [https://github.com/andbrain/jflap-grades](https://github.com/andbrain/jflap-grades)
+
+
+## Prerequisites
+- Python >= Python 3.6.5
+
+## Running
 
 execution:
-> python3 gradesX.py
+> python3 grades.py
 
-## Tests
+## Setting up
 
-1. Name and number of test files must match with referenced in students questions sufix (**q01a**.tst and into the student folder studentA_L01_**q01a**.jff)
+The directory tree structure looks like this:
+```
 
+└───jflap-grades
+    ├───students
+       ├───studentA
+	       ├───studentA_L01_q01a.jff
+  	       ├───studentA_L01_q01b.jff
+    ├───tests
+	    ├───q01a.tst
+	    ├───q01b.tst
+    ├───grades.py
+```
+The .jff files are the JFLAP questions to be verified. The .tst files are the Test Files described below.
+
+Name and number of test files must match with referenced in students questions sufix (**q01a**.tst and into the student folder studentA_L01_**q01a**.jff or  studentA_L01_**q01_a**.jff)
 
   e.g:
   1. tests
@@ -32,9 +56,13 @@ execution:
  * studentA_L01_q03a.jff
 ```
 
-2. Test files must have the input tests and the expected result, as bellow:
-- tests
- -- q01a.tst
+### Test Files
+Test files must have the input tests and the expected result, as bellow:
+
+```
+├───tests
+    ├───q01a.tst
+```
 
 Inside `q01a.tst` must be in this format of data per line:
 ```
@@ -51,8 +79,8 @@ Where:
 - `question_type`:
 type of question
     - 0 for 'run'
-    - 1 for 'equivalent'
-    - 2 for 'regular'
+    - 1 for 'equivalent'  (**TODO**)
+    - 2 for 'regular' (**TODO**)
 
 - `question_value`: 
 
