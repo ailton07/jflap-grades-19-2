@@ -1,8 +1,8 @@
 0
 0.20
-abbb 1
+abbbabaa 1
 aabaa 1
-bbb 1
+bbbaabbb 1
 babaabaabba 1
 abab 0
 ababba 0
